@@ -19,9 +19,24 @@ inp.addEventListener('keypress',(e)=>{
                 let curr=document.querySelector('ul');
                 let toAdd=document.createElement('li'); 
                 toAdd.textContent=content;
+
+
+                // let a=document.createElement('a'); 
+                // a.textContent="x";
+                // a.className="remove";
+                // toAdd.appendChild(a);
+
+                
                 curr.appendChild(toAdd); 
 
                 document.querySelector('input').value="";
             }
         }
 })
+
+// let btn=document.querySelector('ul');
+// btn.addEventListener('click',function(e){
+//     let b=document.getElementById('box');
+//     let li=e.target.parentNode;
+//     b.remove(li);
+// })

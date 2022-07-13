@@ -1,42 +1,59 @@
 
-
-let add=document.querySelector('button');
 let inp=document.querySelector('input');
+let add=document.querySelector('.add');
 
-inp.addEventListener('keypress',(e)=>{
+function addTask() {
 
-        if(e.key=='Enter'){
             let content=document.querySelector('input').value;
 
-            if(content==''){
+            if(content==''||content=="Please Enter Something"){
                 document.querySelector('input').value="Please Enter Something";
                 document.querySelector('input').style.color="yellow";
                 setTimeout(() => {
                     document.querySelector('input').value="";
-                }, 250);
+                }, 1000);
                 
             }else{
-                let curr=document.querySelector('ul');
-                let toAdd=document.createElement('li'); 
-                toAdd.textContent=content;
+
+                document.querySelector(".todo").innerHTML
+                += `<li class="task">
 
 
-                // let a=document.createElement('a'); 
-                // a.textContent="x";
-                // a.className="remove";
-                // toAdd.appendChild(a);
+                     ${document.querySelector('input').value}
+                   
+                            <button class="delete">
+                            <i class="fa fa-times"></i>
+                            </button> 
+                     
 
-                
-                curr.appendChild(toAdd); 
+                    </li > `;
 
-                document.querySelector('input').value="";
+                    let current_tasks = document.querySelectorAll('.delete');
+
+                    for (let i = 0; i < current_tasks.length; i++) {
+                        current_tasks[i].onclick = function () {
+                            this.parentNode.remove();
+                        }
+                    }
+
+                    let tasks = document.querySelectorAll('.task');
+                    for (let i = 0; i < tasks.length; i++) {
+                        tasks[i].onclick = function () {
+                            this.classList.toggle('completed');
+                        }
+                    }
+
+
+
+                    document.querySelector('input').value="";
             }
         }
-})
 
-// let btn=document.querySelector('ul');
-// btn.addEventListener('click',function(e){
-//     let b=document.getElementById('box');
-//     let li=e.target.parentNode;
-//     b.remove(li);
-// })
+
+
+add.addEventListener('click', addTask);
+window.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter') {
+        addTask();
+    }
+})
